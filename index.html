@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<DOCTYPE html>
     <html>
         <head>
             <meta charset="utf-8">
             <title>Clicker</title>
             <link rel="stylesheet" type="text/css" href="style.css">
-            <script src="clicker.js"></script>
+            <script src="humanity.js"></script>
         </head>
         <body>
             <!-- Entête -->
@@ -17,7 +17,6 @@
  |_|  |_|\__,_|_| |_| |_|\__,_|_| |_|_|\__|\__, |
                                             __/ |
                                            |___/
-
             </div>
             <!-- Debut Table principale -->
             <table id="pricipalTable">
@@ -27,10 +26,9 @@
                   <th colspan="2", id="tdMenu">
                       <table id="menuTable">
                         <tbody>
-
-                          <div id="menu">
-                        <p style="text-align: center;"> MENU </p>
-                    </div>
+                            <div id="menu">
+                                <p style="text-align: center;"> MENU </p>
+                            </div>
                         </tbody>
                       </table>
 
@@ -40,27 +38,30 @@
                </tr>
             <!-- TR Display  -->
                 <tr>
-                    <!-- Td = Colone d'inventaire -->
+                    <!-- Td = Colone de Gauche -->
                     <td id="tdInventory">
-                    <!-- Table d'inventaire -->
+                    <!-- Table contenant boutons et display de gauche -->
                         <table id="tableDisplayG" >
                             <tbody>
-                            <!-- TR d'entête (titre) -->
+                            <!-- TR d'entête de gauche -->
                                 <tr id="trUp">
                                     <th>
                                           <table id="funcTable">
                                             <tr>
-                                                <th id="functionTh"><a href="#" id="buttonFunction">Technology</a></th>
-                                                <th id="functionTh"><a href="#" id="buttonFunction">Upgrade</a></th>
-                                                <th id="functionTh"><a href="#" id="buttonFunction">Planets</a></th>
-                                                <th id="functionTh"><a href="#" id="buttonFunction">Stats</a></th>
+                                                <th id="functionTh"><button id="buttonFunction">Technologys</button></th>
+                                                <th id="functionTh"><button href="#" id="buttonFunction">Upgrades</button></th>
+                                                <th id="functionTh"><button href="#" id="buttonFunction">Planet Characteristics</button></th>
+                                                <th id="functionTh"><button href="#" id="buttonFunction">Stats / Wiki</button></th>
                                             </tr>
                                           </table>
                                     </th>
                                 </tr>
-                                <!-- TR Zone affichage -->
-                                <tr id="trDown">
+                                <!-- TR Zone affichage de gauche -->
+                                <tr id="trDownG">
                                     <td>
+                                       <div id="scrollDiv">
+                                           
+                                        </div> 
                                     </td>
                                 </tr>
                                 <!-- TR Fin Zone affichage -->
@@ -88,7 +89,7 @@
 
 
                                 <!-- TR Zone affichage -->
-                                <tr id="trDown">
+                                <tr id="trDownD">
                                     <td>
                                     </td>
                                 </tr>
