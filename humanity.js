@@ -28,20 +28,28 @@ function popByClick () {
 }
 
 function clickTechButton (){
-    document.getElementById("displayBoxGLink").innerHTML = ".";
-    document.getElementById("displayBoxGLink").innerHTML = "<p>P 1</p>";
+    document.getElementById("displayBoxGLink").innerHTML = "<p id='headerDisplayBox'>Technologies :<br/><hr width='80%' color='black'> </p>";
 }
 function clickUpgradesButton (){
-    document.getElementById("displayBoxGLink").innerHTML = ".";
-    document.getElementById("displayBoxGLink").innerHTML = "<p>P 2</p>";
+    document.getElementById("displayBoxGLink").innerHTML ="<p id='headerDisplayBox'>Upgrades :<br/><hr width='80%' color='black'> </p>";
 }
 function clickCharacButton (){
-    document.getElementById("displayBoxGLink").innerHTML = ".";
-    document.getElementById("displayBoxGLink").innerHTML = "<p>P 3</p>";
+    document.getElementById("displayBoxGLink").innerHTML = "<p id='headerDisplayBox'>Planet Characteristics :<br/><hr width='80%' color='black'> </p>";
 }
 function clickStatButton (){
-    document.getElementById("displayBoxGLink").innerHTML = ".";
-    document.getElementById("displayBoxGLink").innerHTML = '<title>Statistics :</title>';
+    document.getElementById("displayBoxGLink").innerHTML = '<p id="headerDisplayBox">Statistics :
+                                                <br/>
+													<hr width="80%" color="black">
+                                                </p>
+                                                <p id="planet.rankDisplay"> </p>
+                                                <p id="planet.populationDisplay"> </p>
+                                                <p id="planet.populationMaxDisplay"> </p>
+                                                <p id="planet.woodDensityDisplay"></p>
+                                                <p id="planet.stoneDensityDisplay"></p>
+                                                <p id="planet.carboneDensityDisplay"></p>
+                                                <p id="planet.ironDensityDisplay"></p>
+                                                <p id="planet.petroleumDensityDisplay"></p>
+                                                <p id="planetNumDisplay"></p>';
 }
 
 
@@ -50,8 +58,8 @@ function clickStatButton (){
 if (planet.populationMax = planet.population) {
     
 }
-/*All prompter
-document.getElementById("planet.rankDisplay").innerHTML = "Rank :" + planet.rank;
+/*All prompter*/
+document.getElementById("planet.rankDisplay").innerHTML = "<span>Rank :" + planet.rank;
 document.getElementById("planet.populationDisplay").innerHTML = "Actual Population :" + planet.population;
 document.getElementById("planet.populationMaxDisplay").innerHTML = "Population Maximum :" + planet.populationMax;
 document.getElementById("planet.woodDensityDisplay").innerHTML = "Planet Density in Wood :" + planet.woodDensity;
