@@ -1,33 +1,64 @@
-/* List objects
-var NOMOBJECT={
-    NomPrototype1: "ValeurPrototype1",
-    NomPrototype2: "ValeurPrototype2",
-    NomPrototype3: "ValeurPrototype3",
+var ressources = {
+	wood: 0,
+	stone: 0,
+	iron: 0,
+	carbone: 0,
+	petroleum: 0,
+	lead: 0,
+	steel: 0, 
 }
 
-
-*/
-var planet = {
-    rank: "1",
-    population: "10",
-    populationMax: "10000000000",
-    woodDensity: "1",
-    stoneDensity: "1",
-    ironDensity: "1",
-    carboneDensity: "1",
-    petroleumDensity: "1",
-    leadDensity: "1",
+var price = {
+	woodUnlock: 100,
+	stoneUnlock: 1000,
+	ironUnlock: 10000,
+	carboneUnlock: 100000,
+	steelUnlock: 1000000,
+	petroleumUnlock: 10000000,
+	plasticUnlock: 100000000,
+	leadUnlock: 1000000000,
 }
+
 var numExploration = 0;
 var explorationPoints = 0;
-var thecnologyPoints = 0;
+var technologyPoints = 0;
+var increment = 1;
 
-function popByClick () {
-    planet.population = planet.population + 1;
-    return planet.population;
-}
+$("#techPointsPrompter").html(technologyPoints);
+$("#tp").click(function(){
+	technologyPoints = technologyPoints + increment;
+	$("#techPointsPrompter").html(technologyPoints);
+});
 
-function clickTechButton (){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*function clickTechButton (){
     document.getElementById("displayBoxGLink").innerHTML = "<p id='headerDisplayBox'>Technologies :<br/><hr width='80%' color='black'> </p>";
 }
 function clickUpgradesButton (){
@@ -51,14 +82,9 @@ function clickStatButton (){
                                                 <p id="planet.petroleumDensityDisplay"></p>
                                                 <p id="planetNumDisplay"></p>';
 }
-
-
-
-
-if (planet.populationMax = planet.population) {
     
 }
-/*All prompter*/
+All prompter
 document.getElementById("planet.rankDisplay").innerHTML = "<span>Rank :" + planet.rank;
 document.getElementById("planet.populationDisplay").innerHTML = "Actual Population :" + planet.population;
 document.getElementById("planet.populationMaxDisplay").innerHTML = "Population Maximum :" + planet.populationMax;

@@ -15,6 +15,19 @@ body{
 	border-bottom : 2px solid black;
 
 }
+#menuTable{
+	height: 100%;
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+td{
+	border-collapse: collapse;
+	border: 1px solid black;
+	height:33.3%; 
+	width:10%;
+	text-align: center;
+}
 #displayBox{
 	height: 83%;
 	width: 100%;
@@ -54,7 +67,7 @@ body{
 	height: 85%;
 	width: 100%;
 }
-button {
+.buttonHeaderG {
 	-moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
 	box-shadow:inset 0px 0px 0px 0px #ffffff;
@@ -82,7 +95,7 @@ button {
 	text-decoration:none;
 	text-shadow:0px 1px 50px #ffffff;
 }
-button:hover {
+.buttonHeaderG:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #a9a9a9));
 	background:-moz-linear-gradient(top, #dfdfdf 5%, #a9a9a9 100%);
 	background:-webkit-linear-gradient(top, #dfdfdf 5%, #a9a9a9 100%);
@@ -92,9 +105,38 @@ button:hover {
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#a9a9a9',GradientType=0);
 	background-color:#dfdfdf;
 }
-button:active {
+.buttonHeaderG:active {
 	position:relative;
 	top:1px;
+}
+.tp {
+	position: relative;
+	width: 130px; 
+	height: 75.06px;
+	background-color: #a264cc;
+	margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+}
+
+.tp:before,
+.tp:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 65px solid transparent;
+  border-right: 65px solid transparent;
+}
+
+.tp:before {
+  bottom: 100%;
+  border-bottom: 37.53px solid #a264cc;
+}
+
+.tp:after {
+  top: 100%;
+  width: 0;
+  border-top: 37.53px solid #a264cc;
 }
 
 /*button{

@@ -4,31 +4,67 @@
 		<meta charset="utf-8">
 		<title>Clicker</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="humanity.js"></script>
 	</head>
 	<body>
 		<!-- Entête -->
 		<div id="principal">
 			<!-- Debut Table principale -->
-			<div id="menu">MENU</div>
+			<div id="menu">
+				<table id="menuTable">
+					<tr>
+						<td colspan="10">Points de techno : <span id="techPointsPrompter"></span><br></td>
+					</tr>
+					<tr>
+						<td>Bois : <span id="techPointsPrompter"></span></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				
+			</div>
 			<div id="displayBox">
 				<div id="displayBoxG">
 					<div id="displayBoxGHeader">
-						<button>Technologies</button>
-						<button>Univers Points</button>
-						<button>Planet Characteristics</button>
-						<button>Stats / Wiki</button>
+						<button class="buttonHeaderG">Technologies</button>
+						<button class="buttonHeaderG">Univers Points</button>
+						<button class="buttonHeaderG">Planet Characteristics</button>
+						<button class="buttonHeaderG">Stats / Wiki</button>
 					</div>
-					<div id="displayBoxGBody">Inventaire</div>
+					<div id="displayBoxGBody">
+						<div id="upgrade">
+							<button class="upgradeButton">Unlock Wood - Price: <p id="upgradeWoodUnlockPrice"></p></button>
+						</div>
+					</div>
 				</div>
 				<div id="displayBoxD">
 					<div id="displayBoxDHeader">Nom de la zone</div>
-					<div id="displayBoxDBody">Image d'illustration</div>
+					<div id="displayBoxDBody"><div class="tp"></div></div>
 				</div>		
 			</div>
 		</div>
 		<div id="credits">
 			© Hugo Santini - Damien Vaurs - Quentin Regnier / 2019
 		</div>
+		<script src="jquery-3.4.0.min.js"></script>
+		<script src="humanity.js"></script>
 	</body>
 </html>
