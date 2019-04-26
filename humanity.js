@@ -1,97 +1,223 @@
-var ressources = {
-	wood: 0,
-	stone: 0,
-	iron: 0,
-	carbone: 0,
-	petroleum: 0,
-	lead: 0,
-	steel: 0, 
+// ##############################################################
+// TITRE ie ce que fait le code de ce fichier
+// ##############################################################
+//
+// --------------------------------------------------------------
+// Variables globales
+// --------------------------------------------------------------
+
+// Quantités de matériaux dont le joueur dispose
+
+var listeDesMateriaux= ["coal","iron","copper","aluminum","tin","silver","gold","tungsten","platinum","titanium"];
+
+var ressource = {
+    coal: 0,
+    iron: 0,
+    copper: 0,
+    aluminum: 0,
+    tin: 0,
+    silver: 0,
+    gold: 0,
+    tungsten:0,
+    platinum: 0,
+    titanium: 0,
 }
 
-var price = {
-	woodUnlock: 100,
-	stoneUnlock: 1000,
-	ironUnlock: 10000,
-	carboneUnlock: 100000,
-	steelUnlock: 1000000,
-	petroleumUnlock: 10000000,
-	plasticUnlock: 100000000,
-	leadUnlock: 1000000000,
+// Quantités de matériaux automatiquement gagné à chaque seconde de jeux
+
+var ressourceIncrementPerSecond = {
+    coal: 1,
+    iron: 1,
+    copper: 0,
+    aluminum: 0,
+    tin: 0,
+    silver: 0,
+    gold: 0,
+    tungsten:0,
+    platinum: 0,
+    titanium: 0,
 }
 
-var numExploration = 0;
+// Prix (points de technologie) nécéssaire pour débloquer une ressource
+
+var upgradePrice = {
+	coal: 10,
+	iron: 100,
+    copper: 10000,
+	aluminum: 100000,
+	tin: 1000000,
+	silver: 10000000,
+    gold: 100000000,
+	tungsten: 1000000000,
+	platinum: 10000000000,
+    titanium: 100000000000,
+}
+var ressourceLevel = {
+    coal: 0,
+    iron: 0,
+    copper: 0,
+    aluminum: 0,
+    tin: 0,
+    silver: 0,
+    gold: 0,
+    tungsten:0,
+    platinum: 0,
+    titanium: 0,   
+}
+
+
+
 var explorationPoints = 0;
-var technologyPoints = 0;
+var technologyPoints = 1000000000000;
 var increment = 1;
+var technologyPointsPerSecond = 0;
 
-$("#techPointsPrompter").html(technologyPoints);
+// Variable for stat.
+var totTechnologyPoints = 0;
+var numExploration = 0;
+
+//Multplier (faster upgrade)
+var multiplier = 1;
+
+
+//########################################################
+// MENU ZONE
+//########################################################
+
+// Update PD (Point Display).
+// Initialisation
+listeDesMateriaux.forEach(
+            function(mat) {
+                $("#"+mat+"PD").html(ressource["mat"]);
+            }
+        );
+
+//########################################################
+// HEADER D ZONE
+//########################################################
+
+$("#techPD").html(technologyPoints);
+$("#exploPD").html(explorationPoints);
+
+//########################################################
+// HEARDER G ZONE
+//########################################################
+
+//########################################################
+// BODY D ZONE
+//########################################################
+
 $("#tp").click(function(){
 	technologyPoints = technologyPoints + increment;
 	$("#techPointsPrompter").html(technologyPoints);
 });
 
+//Multiplier:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*function clickTechButton (){
-    document.getElementById("displayBoxGLink").innerHTML = "<p id='headerDisplayBox'>Technologies :<br/><hr width='80%' color='black'> </p>";
+function changeMultiplier(event) {
+    multiplier = event.data.mult;
+    $("#buttonMultiplier1").css({
+        backgroundColor: 'rgb(169, 169, 169)',
+    })
+    $("#buttonMultiplier1").css({
+        backgroundColor: 'rgb(169, 169, 169)',
+    })
+    $("#buttonMultiplier1").css({
+        backgroundColor: 'rgb(169, 169, 169)',
+    })
+    $("#buttonMultiplier"+event.data.mult).css({
+        backgroundColor: 'red',
+    });
 }
-function clickUpgradesButton (){
-    document.getElementById("displayBoxGLink").innerHTML ="<p id='headerDisplayBox'>Upgrades :<br/><hr width='80%' color='black'> </p>";
+$("#buttonMultiplier1").click({mult:1},changeMultiplier);
+$("#buttonMultiplier10").click({mult:10},changeMultiplier);
+$("#buttonMultiplier100").click({mult:100},changeMultiplier);
+
+
+
+//########################################################
+// BODY G ZONE
+//########################################################
+
+//--------------------------------------------------------
+// Thechnologies Upgrade
+//--------------------------------------------------------
+var techUpString = '<p id="upgrade">  1 </p>';
+$("#techUpButton").click(function(){
+   $("#displayBoxGBody").html(techUpString)
+});
+
+
+
+//--------------------------------------------------------
+//  Upgrade Materials
+//--------------------------------------------------------
+var matUpString = '<p id="upgrade">  2 </p>';
+
+$("#matUpButton").click(function(){
+   $("#displayBoxGBody").html(matUpString) 
+});
+
+
+//88888888888888888888888888888888888888888888888888888888
+//Algo: of Upgrades Buttons
+
+function upgradePriceARessourceLevel(event) {
+    if (upgradePrice[event.data.material]*multiplier <= technologyPoints){
+        technologyPoints -= upgradePrice[event.data.material];
+        $("#techPD").html(technologyPoints); 
+        ressourceLevel[event.data.material] += multiplier;
+        upgradePrice[event.data.material]   *=  1.17 * multiplier;
+        $("#"+event.data.material+"Level").html(ressourceLevel[event.data.material]); 
+    }
 }
-function clickCharacButton (){
-    document.getElementById("displayBoxGLink").innerHTML = "<p id='headerDisplayBox'>Planet Characteristics :<br/><hr width='80%' color='black'> </p>";
-}
-function clickStatButton (){
-    document.getElementById("displayBoxGLink").innerHTML = '<p id="headerDisplayBox">Statistics :
-                                                <br/>
-													<hr width="80%" color="black">
-                                                </p>
-                                                <p id="planet.rankDisplay"> </p>
-                                                <p id="planet.populationDisplay"> </p>
-                                                <p id="planet.populationMaxDisplay"> </p>
-                                                <p id="planet.woodDensityDisplay"></p>
-                                                <p id="planet.stoneDensityDisplay"></p>
-                                                <p id="planet.carboneDensityDisplay"></p>
-                                                <p id="planet.ironDensityDisplay"></p>
-                                                <p id="planet.petroleumDensityDisplay"></p>
-                                                <p id="planetNumDisplay"></p>';
-}
-    
-}
-All prompter
-document.getElementById("planet.rankDisplay").innerHTML = "<span>Rank :" + planet.rank;
-document.getElementById("planet.populationDisplay").innerHTML = "Actual Population :" + planet.population;
-document.getElementById("planet.populationMaxDisplay").innerHTML = "Population Maximum :" + planet.populationMax;
-document.getElementById("planet.woodDensityDisplay").innerHTML = "Planet Density in Wood :" + planet.woodDensity;
-document.getElementById("planet.stoneDensityDisplay").innerHTML = "Planet Density in Stone :" + planet.stoneDensity;
-document.getElementById("planet.carboneDensityDisplay").innerHTML = "Planet Density in Carbone :" + planet.carboneDensity;
-document.getElementById("planet.ironDensityDisplay").innerHTML = "Planet Density in Iron :" + planet.ironDensity;
-document.getElementById("planet.petroleumDensityDisplay").innerHTML = "Planet Density in Petroleum :" + planet.petroleumDensity;
-document.getElementById("planetNumDisplay").innerHTML = "Planet : " + numExploration;
-document.getElementById("populationDisplay").innerHTML = planet.population + " Humans";*/
+
+//Display :Button event calling the algorithm
+listeDesMateriaux.forEach(
+            function(mat) {
+                $("#"+mat+"Upgrade").click({material:mat,mult:multiplier},upgradePriceARessourceLevel);
+            }
+        )
+//88888888888888888888888888888888888888888888888888888888
+
+//--------------------------------------------------------
+//  Univers Upgrade
+//--------------------------------------------------------
+var univUpString = '<p id="upgrade">  3 </p>';
+$("#univButton").click(function(){
+   $("#displayBoxGBody").html(univUpString) 
+});
+
+
+
+//--------------------------------------------------------
+//  Statistics
+//--------------------------------------------------------
+var statString = '<p id="upgrade">  4 </p>';
+
+$("#statButton").click(function(){
+   $("#displayBoxGBody").html(statString) 
+});
+
+$("#totTechnologyPointsID").html(totTechnologyPoints);
+$("#numExplorationID").html(numExploration);
+$("#technologyPointsPerSecondID").html(technologyPointsPerSecond);
+
+//########################################################
+//MATH 
+//########################################################
+
+//88888888888888888888888888888888888888888888888888888888
+//Algo: Increment per second for each ressource and the display refresh
+
+window.setInterval(
+    function (){
+        listeDesMateriaux.forEach(
+            function(mat) {
+                ressource[mat] += ressourceIncrementPerSecond[mat] * ressourceLevel[mat] ;
+                $("#"+mat+"PD").html(ressource[mat]);
+            }
+        )
+    },1000);
+
+//8888888888888888888888888888888888888888888888888888888

@@ -11,53 +11,82 @@
 			<!-- Debut Table principale -->
 			<div id="menu">
 				<table id="menuTable">
-					<tr>
-						<td colspan="10">Points de techno : <span id="techPointsPrompter"></span><br></td>
-					</tr>
-					<tr>
-						<td>Bois : <span id="techPointsPrompter"></span></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-				
+				    <tr>
+                        <td><p class="mineralName">Coal : <span id="coalPD"></span> </p></td>
+                        <td><p class="mineralName">Iron : <span id="ironPD"></span> </p></td>
+                        <td><p class="mineralName">Copper : <span id="copperPD"></span> </p></td>
+                        <td><p class="mineralName">Aluminum : <span id="aluminumPD"></span> </p></td>
+                        <td><p class="mineralName">Tin : <span id="tinPD"></span> </p></td>   
+				    </tr>
+				    <tr>
+                        <td><p class="mineralName">Silver : <span id="silverPD"></span> </p></td>
+                        <td><p class="mineralName">Gold : <span id="goldPD"></span> </p></td>
+                        <td><p class="mineralName">Tungsten : <span id="tungstenPD"></span> </p></td>
+                        <td><p class="mineralName">Platinum : <span id="platinumPD"></span> </p></td>
+                        <td><p class="mineralName">Titanium : <span id="titaniumPD"></span> </p></td>
+				    </tr>
+                </table>
 			</div>
 			<div id="displayBox">
 				<div id="displayBoxG">
 					<div id="displayBoxGHeader">
-						<button class="buttonHeaderG">Technologies</button>
-						<button class="buttonHeaderG">Univers Points</button>
-						<button class="buttonHeaderG">Planet Characteristics</button>
-						<button class="buttonHeaderG">Stats / Wiki</button>
+						<button id="techUpButton" class="buttonHeaderG">Technologies Upgrade</button>
+						<button id="matUpButton" class="buttonHeaderG">Upgrade Materials</button>
+						<button id="univUpButton" class="buttonHeaderG">Universe Upgrade</button>
+						<button id="statButton" class="buttonHeaderG">Statistics</button>
 					</div>
 					<div id="displayBoxGBody">
-						<div id="upgrade">
-							<button class="upgradeButton">Unlock Wood - Price: <p id="upgradeWoodUnlockPrice"></p></button>
+						<div id="stat">
+                            <p>Total of technologie points earn (on this universe): <span id="totTechnologyPointsID"></span></p>
+                            <p>Total of exploration points earn (on this universe): <span id="numExplorationID"></span></p>
+                            <p>Technologies points per second: <span id="technologyPointsPerSecondID"></span></p>
+                            <p>Time played: <span id="timePlayed"></span></p>
+                            <p>Coal per second: <span id="coalPerSecond"></span></p>
+                            <p>Iron per second: <span id="ironPerSecond"></span></p>
+                            <p>Copper per second: <span id="copperPerSecond"></span></p>
+                            <p>Aluminum per second: <span id="aluminumPerSecond"></span></p>
+                            <p>Tin per second: <span id="tinPerSecond"></span></p>
+                            <p>Silver per second: <span id="silverPerSecond"></span></p>
+                            <p>Gold per second: <span id="goldPerSecond"></span></p>
+                            <p>Tungsten per second: <span id="tungstenPerSecond"></span></p>
+                            <p>Platinum per second: <span id="platinumPerSecond"></span></p>
+                            <p>Titanium per second: <span id="titaniumPerSecond"></span></p>
+                            <p>Coal Level: <span id="coalLevel"></span></p>
+                            <p>Iron Level: <span id="ironLevel"></span></p>
+                            <p>Copper Level: <span id="copperLevel"></span></p>
+                            <p>Aluminum Level: <span id="aluminumLevel"></span></p>
+                            <p>Tin Level: <span id="tinLevel"></span></p>
+                            <p>Silver Level: <span id="silverLevel"></span></p>
+                            <p>Gold Level: <span id="goldLevel"></span></p>
+                            <p>Tungsten Level: <span id="tungstenLevel"></span></p>
+                            <p>Platinum Level: <span id="platinumLevel"></span></p>
+                            <p>Titanium Level: <span id="titaniumLevel"></span></p>
 						</div>
 					</div>
 				</div>
 				<div id="displayBoxD">
-					<div id="displayBoxDHeader">Nom de la zone</div>
-					<div id="displayBoxDBody"><div class="tp"></div></div>
+					<div id="displayBoxDHeader">
+                        <table id="tableDHeader">
+                            <tr>
+                                <td>
+                                    <p class="mineralName">Technologies points : <span id="techPD"></span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="mineralName">Exploration points : <span id="exploPD"></span></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+					<div id="displayBoxDBody">
+                        <div id="multiplierZone">
+                            <button id="buttonMultiplier1">*1</button>
+                            <button id="buttonMultiplier10">*10</button>
+                            <button id="buttonMultiplier100">*100</button>
+                        </div>
+                                <button id="techButton">Tech</button>
+                    </div>
 				</div>		
 			</div>
 		</div>
