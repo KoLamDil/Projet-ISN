@@ -79,6 +79,8 @@ var numExploration = 0;
 //Multplier (faster upgrade)
 var multiplier = 1;
 
+var gameTime = 0;
+
 
 //########################################################
 // MENU ZONE
@@ -107,9 +109,9 @@ $("#exploPD").html(explorationPoints);
 // BODY D ZONE
 //########################################################
 
-$("#tp").click(function(){
+$("#techButton").click(function(){
 	technologyPoints = technologyPoints + increment;
-	$("#techPointsPrompter").html(technologyPoints);
+	$("#techPD").html(technologyPoints);
 });
 
 //Multiplier:
@@ -221,3 +223,12 @@ window.setInterval(
     },1000);
 
 //8888888888888888888888888888888888888888888888888888888
+
+//Game time
+
+window.setInterval(
+    function(){
+        gameTime++
+        $("#timePlayed").html(gameTime);
+    },1000
+);
