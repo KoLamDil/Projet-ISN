@@ -186,7 +186,7 @@ listeDesMateriaux.forEach(
 //  Univers Upgrade
 //--------------------------------------------------------
 var univUpString = '<p id="upgrade">  3 </p>';
-$("#univButton").click(function(){
+$("#univUpButton").click(function(){
    $("#displayBoxGBody").html(univUpString) 
 });
 
