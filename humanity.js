@@ -68,7 +68,7 @@ var ressourceLevel = {
 
 
 var explorationPoints = 0;
-var technologyPoints = 1000000000000;
+var technologyPoints = 0;
 var increment = 1;
 var technologyPointsPerSecond = 0;
 
@@ -80,6 +80,7 @@ var numExploration = 0;
 var multiplier = 1;
 
 var gameTime = 0;
+
 
 
 //########################################################
@@ -97,8 +98,12 @@ listeDesMateriaux.forEach(
 //########################################################
 // HEADER D ZONE
 //########################################################
-
-$("#techPD").html(technologyPoints);
+if(technologyPoints < 1000000){
+	$("#techPD").html(technologyPoints);
+}
+else{
+	$("#techPD").html(technologyPoints.toExponential(2));
+}
 $("#exploPD").html(explorationPoints);
 
 //########################################################
@@ -195,7 +200,7 @@ $("#univUpButton").click(function(){
 //--------------------------------------------------------
 //  Statistics
 //--------------------------------------------------------
-var statString = '<p id="upgrade">  4 </p>';
+var statString = '<p>Total of technology points earned (on this universe): <span id="totTechnologyPointsID"></span></p> <p>Total of exploration points earned (on this universe): <span id="numExplorationID"></span></p> <p>Technology points per second: <span id="technologyPointsPerSecondID"></span></p> <p>Game time: <span id="timePlayed"></span></p> <p>Coal per second: <span id="coalPerSecond"></span></p> <p>Iron per second: <span id="ironPerSecond"></span></p> <p>Copper per second: <span id="copperPerSecond"></span></p> <p>Aluminum per second: <span id="aluminumPerSecond"></span></p> <p>Tin per second: <span id="tinPerSecond"></span></p> <p>Silver per second: <span id="silverPerSecond"></span></p> <p>Gold per second: <span id="goldPerSecond"></span></p> <p>Tungsten per second: <span id="tungstenPerSecond"></span></p> <p>Platinum per second: <span id="platinumPerSecond"></span></p> <p>Titanium per second: <span id="titaniumPerSecond"></span></p> <p>Coal Level: <span id="coalLevel"></span></p> <p>Iron Level: <span id="ironLevel"></span></p> <p>Copper Level: <span id="copperLevel"></span></p> <p>Aluminum Level: <span id="aluminumLevel"></span></p> <p>Tin Level: <span id="tinLevel"></span></p> <p>Silver Level: <span id="silverLevel"></span></p> <p>Gold Level: <span id="goldLevel"></span></p> <p>Tungsten Level: <span id="tungstenLevel"></span></p> <p>Platinum Level: <span id="platinumLevel"></span></p> <p>Titanium Level: <span id="titaniumLevel"></span></p>';
 
 $("#statButton").click(function(){
    $("#displayBoxGBody").html(statString) 
@@ -205,9 +210,11 @@ $("#totTechnologyPointsID").html(totTechnologyPoints);
 $("#numExplorationID").html(numExploration);
 $("#technologyPointsPerSecondID").html(technologyPointsPerSecond);
 
-//########################################################
-//MATH 
-//########################################################
+//--------------------------------------------------------
+// Mat upgrade
+//--------------------------------------------------------
+
+
 
 //88888888888888888888888888888888888888888888888888888888
 //Algo: Increment per second for each ressource and the display refresh
@@ -230,5 +237,5 @@ window.setInterval(
     function(){
         gameTime++
         $("#timePlayed").html(gameTime);
-    },1000
-);
+    },1000);
+
