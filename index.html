@@ -6,24 +6,32 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
+        <pre id="ascii">
+██╗   ██╗ ██████╗ ██╗   ██╗ █████╗  ██████╗ ███████╗██████╗ 
+██║   ██║██╔═══██╗╚██╗ ██╔╝██╔══██╗██╔════╝ ██╔════╝██╔══██╗
+██║   ██║██║   ██║ ╚████╔╝ ███████║██║  ███╗█████╗  ██████╔╝
+╚██╗ ██╔╝██║   ██║  ╚██╔╝  ██╔══██║██║   ██║██╔══╝  ██╔══██╗
+ ╚████╔╝ ╚██████╔╝   ██║   ██║  ██║╚██████╔╝███████╗██║  ██║
+  ╚═══╝   ╚═════╝    ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
+        </pre>
 		<!-- Entête -->
 		<div id="principal">
 			<!-- Debut Table principale -->
 			<div id="menu">
 				<table id="menuTable">
 				    <tr>
-                        <td><p class="mineralName">Coal : <span id="coalPD"></span> </p></td>
-                        <td><p class="mineralName">Iron : <span id="ironPD"></span> </p></td>
-                        <td><p class="mineralName">Copper : <span id="copperPD"></span> </p></td>
-                        <td><p class="mineralName">Aluminum : <span id="aluminumPD"></span> </p></td>
-                        <td><p class="mineralName">Tin : <span id="tinPD"></span> </p></td>   
+                        <td><p class="mineralName"><img class="ring" src="sprite/coalSprite.png" title="Coal">Coal : <span id="coalPD"></span></p></td>
+                        <td><p class="mineralName"><img class="ring" src="sprite/ironSprite.png" title="Iron">Iron : <span id="ironPD"></span> </p></td>
+                        <td><p class="mineralName"><img class="ring" src="sprite/copperSprite.png" title="Copper">Copper : <span id="copperPD"></span> </p></td>
+                        <td><p class="mineralName"><img class="ring" src="sprite/aluminumSprite.png" title="Aluminum">Aluminum : <span id="aluminumPD"></span> </p></td>
+                        <td><p class="mineralName"><img class="ring" src="sprite/tinSprite.png" title="Tin">Tin : <span id="tinPD"></span> </p></td>   
 				    </tr>
 				    <tr>
-                        <td><p class="mineralName">Silver : <span id="silverPD"></span> </p></td>
-                        <td><p class="mineralName">Gold : <span id="goldPD"></span> </p></td>
-                        <td><p class="mineralName">Tungsten : <span id="tungstenPD"></span> </p></td>
-                        <td><p class="mineralName">Platinum : <span id="platinumPD"></span> </p></td>
-                        <td><p class="mineralName">Titanium : <span id="titaniumPD"></span> </p></td>
+                        <td><p class="mineralName"><img class="ring" src="sprite/silverSprite.png" title="Silver">Silver : <span id="silverPD"></span> </p></td>
+                        <td><p class="mineralName"><img class="ring" src="sprite/goldSprite.png" title="Gold">Gold : <span id="goldPD"></span> </p></td>
+                        <td><p class="mineralName"><img class="ring" src="sprite/tungstenSprite.png" title="Tungsten">Tungsten : <span id="tungstenPD"></span> </p></td>
+                        <td><p class="mineralName"><img class="ring" src="sprite/platinumSprite.png" title="Platinum">Platinum : <span id="platinumPD"></span> </p></td>
+                        <td><p class="mineralName"><img class="ring" src="sprite/titaniumSprite.png" title="Titanium">Titanium : <span id="titaniumPD"></span> </p></td>
 				    </tr>
                 </table>
 			</div>
@@ -36,18 +44,7 @@
 						<button id="statButton" class="buttonHeaderG">Statistics</button>
 					</div>
 					<div id="displayBoxGBody">
-						<div id="stat">
-							<button id="coalUpgrade">Coal upgrade</button>
-							<button id="ironUpgrade">Iron upgrade</button>
-							<button id="copperUpgrade">Copper upgrade</button>
-							<button id="aluminumUpgrade">Aluminum upgrade</button>
-							<button id="tinUpgrade">Tin upgrade</button>
-							<button id="silverUpgrade">Silver upgrade</button>
-							<button id="goldUpgrade">Gold upgrade</button>
-							<button id="tungstenUpgrade">Tungsten upgrade</button>
-							<button id="platinumUpgrade">Platinum upgrade</button>
-							<button id="titaniumUpgrade">Titanium upgrade</button>
-						</div>
+						<div id="matUp"><button class="functionButton" id="coalUpgrade"> Coal Upgrade<br> <span class="infoClass" id="coalInfo"></span> </button> <span> <br> </span><button class="functionButton" id="ironUpgrade"> Iron Upgrade<br> <span class="infoClass" id="ironInfo"></span> </button> <br><button class="functionButton" id="copperUpgrade"> Copper Upgrade<br> <span class="infoClass" id="copperInfo"></span> </button> <br><button class="functionButton" id="aluminumUpgrade"> Aluminum Upgrade<br> <span class="infoClass" id="aluminumInfo"></span> </button> <br><button class="functionButton" id="tinUpgrade"> Tin Upgrade<br> <span class="infoClass" id="tinInfo"></span> </button> <br><button class="functionButton" id="silverUpgrade"> Silver Upgrade<br> <span class="infoClass" id="silverInfo"></span> </button> <br><button class="functionButton" id="goldUpgrade"> Gold Upgrade<br> <span class="infoClass" id="goldInfo"></span> </button> <br><button class="functionButton" id="tungstenUpgrade"> Tungsten Upgrade<br> <span class="infoClass" id="tungstenInfo"></span> </button> <br><button class="functionButton" id="platinumUpgrade"> Platinum Upgrade<br> <span class="infoClass" id="platinumInfo"></span> </button> <br><button class="functionButton" id="titaniumUpgrade"> Titanium Upgrade<br> <span class="infoClass" id="titaniumInfo"></span> </button> <br></div>
 					</div>
 				</div>
 				<div id="displayBoxD">
@@ -66,13 +63,12 @@
                         </table>
                     </div>
 					<div id="displayBoxDBody">
-                        <div id="spamButton">
-                        <br><button id="techButton">Tech</button>
-                        </div><br>
                         <div id="multiplierZone">
-                            <button id="buttonMultiplier1">*1</button>
-                            <button id="buttonMultiplier10">*10</button>
-                            <button id="buttonMultiplier100">*100</button>
+                            <button class="buttonMultiplier" id="buttonMultiplier1">*1</button><button class="buttonMultiplier" id="buttonMultiplier10">*10</button><button class="buttonMultiplier" id="buttonMultiplier100">*100</button>
+                        <div id="techButton">
+                            <br>
+                            <a href="#" class="planets"><img id="planetimg" src="planets.png" title="Earn Technology points"> </a>
+                        </div>
                         </div>
                     </div>
 				</div>		
@@ -81,7 +77,7 @@
 		<div id="credits">
 			© Hugo Santini - Damien Vaurs - Quentin Regnier / 2019
 		</div>
-		<script src="jquery-3.4.0.min.js"></script>
-		<script src="humanity.js"></script>
+        <script src="jquery-3.4.0.min.js"></script>
+        <script src="humanity.js"></script>
 	</body>
 </html>
