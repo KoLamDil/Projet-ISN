@@ -562,17 +562,6 @@ window.setInterval(
         )
     },1000);
 
-function updatePrice (mat){
-        upgradePriceWMult[mat] = updatePrice[mat] * puisMult;
-        console.log("update du prix du "+mat+" : "+ upgradePriceWMult[mat]+" puis mult : "+puisMult);
-}
-window.setInterval (
-    listeDesMateriaux.forEach (function (mat){
-        upgradePriceWMult[mat] = updatePrice[mat] * puisMult;
-        console.log(upgradePriceWMult[mat])
-    }),1000);
-
-
 
 function changeMultiplier(event) {
     multiplier = event.data.mult;
@@ -584,13 +573,29 @@ function changeMultiplier(event) {
     listeDesMateriaux.forEach(updatePrice);
 ;
 }
+
+
+
+function updatePrice (mat){
+    upgradePriceWMult[mat] = upgradePrice[mat] * puisMult;
+    console.log("update du prix du "+mat+" : "+ upgradePriceWMult[mat]+" puis mult : "+puisMult);
+}
+window.setInterval (
+    listeDesMateriaux.forEach (function (mat){
+        upgradePriceWMult[mat] = upgradePrice[mat] * puisMult;
+        console.log(upgradePriceWMult[mat])
+    }),1000);
+
+
+
+
     
 
 
 
 //Algo: of Upgrades Buttons
 function upgradePriceARessourceLevel(event) {
-    if ( updatePrice[event.data.material] * puisMult<= technologyPoints){
+    if ( (upgradePrice[event.data.material] * puisMult)<= technologyPoints){
         console.log("cul")
         for (var i = 1; i <= multiplier; i++) {
             technologyPoints -= upgradePrice[event.data.material]; 
@@ -600,6 +605,7 @@ function upgradePriceARessourceLevel(event) {
             updatePrice(event.data.material);
         }
     }
+    else{console.log("bite")}
 }
 
 //Display :Button event calling the algorithm
