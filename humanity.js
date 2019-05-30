@@ -69,8 +69,6 @@ var upgradePriceWMult = {
 var explorationPoints = 0;
 var technologyPoints = 0;
 var increment = 1;
-var technologyPointsPerSecond = 0;
-
 
 // Variable for stat.
 var numExploration = 0;
@@ -81,6 +79,7 @@ var multiplier = 1;
 var gameTime = 0;
 var complexe = 1.17;
 
+var puisMult = Math.pow(complexe, multiplier);
 
 
 
@@ -246,33 +245,8 @@ $("#techButton").click(function(){
 	$("#techPD").html(technologyPoints);
 });
 
-//Multiplier:
-function updatePrice (mat){
-    for (var i = 0; i < multiplier; i++) {
-        upgradePriceWMult[mat] = updatePrice[mat] * multiplier;
-        console.log("update du prix");
-    }
-}
 
 
-function changeMultiplier(event) {
-    multiplier = event.data.mult;
-    $("#buttonMultiplier1").css({
-        backgroundColor: 'rgb(169, 169, 169)',
-    })
-    $("#buttonMultiplier10").css({
-        backgroundColor: 'rgb(169, 169, 169)',
-    })
-    $("#buttonMultiplier100").css({
-        backgroundColor: 'rgb(169, 169, 169)',
-    })
-    $("#buttonMultiplier"+event.data.mult).css({
-        backgroundColor: 'red',
-    })
-    listeDesMateriaux.forEach(updatePrice)
-    ;
-}
-    
 
 $("#buttonMultiplier1").click({mult:1},changeMultiplier);
 $("#buttonMultiplier10").click({mult:10},changeMultiplier);
@@ -371,24 +345,6 @@ function techUpgrades (incrementvalue,coalPrice,ironPrice,copperPrice,aluminumPr
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //--------------------------------------------------------
 //  Upgrade Materials
 //--------------------------------------------------------
@@ -398,25 +354,6 @@ $("#matUpButton").click(function(){
    $("#displayBoxGBody").html(matUpString) 
 });
 
-//Algo: of Upgrades Buttons
-function upgradePriceARessourceLevel(event) {
-    if (upgradePriceWMult[event.data.material]<= technologyPoints){
-        for (var i = 0; i < multiplier; i++) {
-            technologyPoints -= upgradePrice[event.data.material];
-            $("#techPD").html(technologyPoints); 
-            ressourceLevel[event.data.material] ++;
-            upgradePrice[event.data.material]   *=  complexe;
-            updatePrice(event.data.material);
-        }
-    }
-}
-
-//Display :Button event calling the algorithm
-listeDesMateriaux.forEach(
-            function(mat) {
-                $("#displayBoxGBody").on("click","#"+mat+"Upgrade",{material:mat,mult:multiplier},upgradePriceARessourceLevel);
-            }
-        );
 
 window.setInterval(
     function (){
@@ -624,3 +561,65 @@ window.setInterval(
             }
         )
     },1000);
+
+function updatePrice (mat){
+        upgradePriceWMult[mat] = updatePrice[mat] * puisMult;
+        console.log("update du prix du "+mat+" : "+ upgradePriceWMult[mat]+" puis mult : "+puisMult);
+}
+window.setInterval (
+    listeDesMateriaux.forEach (function (mat){
+        upgradePriceWMult[mat] = updatePrice[mat] * puisMult;
+        console.log(upgradePriceWMult[mat])
+    }),1000);
+
+
+
+function changeMultiplier(event) {
+    multiplier = event.data.mult;
+    $("#buttonMultiplier1").css({backgroundColor: 'rgb(169, 169, 169)',});
+    $("#buttonMultiplier10").css({backgroundColor: 'rgb(169, 169, 169)', });
+    $("#buttonMultiplier100").css({backgroundColor: 'rgb(169, 169, 169)',});
+    $("#buttonMultiplier"+event.data.mult).css({backgroundColor: 'red',});
+    puisMult = Math.pow(complexe,event.data.mult)
+    listeDesMateriaux.forEach(updatePrice);
+;
+}
+    
+
+
+
+//Algo: of Upgrades Buttons
+function upgradePriceARessourceLevel(event) {
+    if ( updatePrice[event.data.material] * puisMult<= technologyPoints){
+        console.log("cul")
+        for (var i = 1; i <= multiplier; i++) {
+            technologyPoints -= upgradePrice[event.data.material]; 
+            upgradePrice[event.data.material]   *=  complexe;
+            $("#techPD").html(technologyPoints); 
+            ressourceLevel[event.data.material] ++;
+            updatePrice(event.data.material);
+        }
+    }
+}
+
+//Display :Button event calling the algorithm
+listeDesMateriaux.forEach(
+            function(mat) {
+                $("#displayBoxGBody").on("click","#"+mat+"Upgrade",{material:mat,mult:multiplier},upgradePriceARessourceLevel);
+                $("#"+mat+"Info").html("LVL: "+ressourceLevel[mat]+"<br>"+" *"+multiplier+"<br>"+"Price: "+ upgradePriceWMult[mat].toExponential(2));
+                
+            }
+        );
+
+
+//Multiplier:
+
+
+
+
+
+
+
+
+
+
