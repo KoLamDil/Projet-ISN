@@ -80,7 +80,7 @@ var gameTime = 0;
 var complexe = 1.17;
 
 var puisMult = Math.pow(complexe, multiplier);
-
+ var intermed = 0;
 
 
 
@@ -167,6 +167,7 @@ listeDesMateriaux.forEach(
 //########################################################
 // HEADER D ZONE
 //########################################################
+
 if(technologyPoints < 1000000){
 	$("#techPD").html(technologyPoints);
 }
@@ -242,7 +243,13 @@ $("#exploPD").html(explorationPoints);
 $("#techButton").click(function(){
 	technologyPoints += increment;
     totTechPoints += increment;
-	$("#techPD").html(technologyPoints);
+        if(technologyPoints < 1000000){
+                intermed = Math.round((technologyPoints + 0.00001) * 100) / 100
+                $("#techPD").html(intermed);
+                }
+            else{
+	           $("#techPD").html(technologyPoints.toExponential(2));
+            }
 });
 
 
@@ -286,7 +293,24 @@ $("#buttonMultiplier100").click({mult:100},changeMultiplier);
 //--------------------------------------------------------
 // Thechnologies Upgrade
 //--------------------------------------------------------
-var techUpString = '<p id="upgrade">  1 </p>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var techUpString = [];
 $("#techUpButton").click(function(){
    $("#displayBoxGBody").html(techUpString)
 });
@@ -297,7 +321,30 @@ var test3 = 0;
 var test4 = 0;
 var test5 = 0;
 
-function techUpgrades (incrementvalue,coalPrice,ironPrice,copperPrice,aluminumPrice,tinPrice,silverPrice,goldPrice,tungstenPrice,platinumPrice,titaniumPrice) {
+function techUpButtonCreator (name,upgradenumber,incrementvalue,coalPrice,ironPrice,copperPrice,aluminumPrice,tinPrice,silverPrice,goldPrice,tungstenPrice,platinumPrice,titaniumPrice){
+    techUpString.push(
+        '<div id="upgradeDiv'+upgradenumber+'"><button onclick=\'techUpgrades ("'+name+'",'+upgradenumber+','+incrementvalue+','+coalPrice+','+ironPrice+','+copperPrice+','+aluminumPrice+','+tinPrice+','+silverPrice+','+goldPrice+','+tungstenPrice+','+platinumPrice+','+titaniumPrice +')\' class="upgradeButton" id="upgradeNumber'+upgradenumber+'">'+ name +
+        '<br>'+
+    '<pre><div class="prixInfo">'+
+        '<span class="coalPrice"><img src="sprite/coalSpriteDroite.png">:'+coalPrice.toExponential(2)+'  </span>'+
+        '<span class="ironPrice"><img src="sprite/ironSpriteDroite.png">:'+ironPrice.toExponential(2)+'  </span>'+
+        '<span class="copperPrice"><img src="sprite/copperSpriteDroite.png">:'+copperPrice.toExponential(2)+'  </span>'+
+        '<span class="aluminumPrice"><img src="sprite/aluminumSpriteDroite.png">:'+aluminumPrice.toExponential(2)+'  </span>'+
+        '<span class="tinPrice"><img src="sprite/tinSpriteDroite.png">:'+tinPrice.toExponential(2)+'  </span>'+
+        '<span class="silverPrice"><img src="sprite/silverSpriteDroite.png">:'+silverPrice.toExponential(2)+'  </span>'+
+        '<span class="goldPrice"><img src="sprite/goldSpriteDroite.png">:'+goldPrice.toExponential(2)+'  </span>'+
+        '<span class="tungstenPrice"><img src="sprite/tungstenSpriteDroite.png">:'+tungstenPrice.toExponential(2)+'  </span>'+
+        '<span class="platinumPrice"><img src="sprite/platinumSpriteDroite.png">:'+platinumPrice.toExponential(2)+'  </span>'+
+        '<span class="titaniumPrice"><img src="sprite/titaniumSpriteDroite.png">:'+titaniumPrice.toExponential(2)+'  </span>'+
+    '</div>'+
+    '<br>'+
+    '<div id="infoBonus">Bonus : +' +incrementvalue.toExponential(2)+'</div></pre>'+
+'</button>');
+    
+}
+    
+
+function techUpgrades (name,upgradenumber,incrementvalue,coalPrice,ironPrice,copperPrice,aluminumPrice,tinPrice,silverPrice,goldPrice,tungstenPrice,platinumPrice,titaniumPrice) {
         if (coalPrice <= ressource.coal && ironPrice <= ressource.iron){
             test1 = 1;
         }
@@ -331,9 +378,42 @@ function techUpgrades (incrementvalue,coalPrice,ironPrice,copperPrice,aluminumPr
             test3 = 0;
             test4 = 0;
             test5 = 0;
+            $("#upgradeDiv"+upgradenumber).html(" ")
+            techUpString[upgradenumber-1] = "";
+            console.log(upgradenumber + name)
                 }
 
 }
+
+
+// Upgrade creator
+techUpButtonCreator ("Feu",1,1,10,0,0,0,0,0,0,0,0,0)
+techUpButtonCreator ("Feu 2",2,1,10,10,0,0,0,0,0,0,0,0)
+techUpButtonCreator ("Feu 3",3,1,10,10,10,0,0,0,0,0,0,0)
+techUpButtonCreator ("Feu 4",4,1,10,10,10,10,10,0,0,0,0,0)
+techUpButtonCreator ("Feu 5",5,1,10,10,10,10,10,10,0,0,0,0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -583,7 +663,6 @@ function updatePrice (mat){
 window.setInterval (
     listeDesMateriaux.forEach (function (mat){
         upgradePriceWMult[mat] = upgradePrice[mat] * puisMult;
-        console.log(upgradePriceWMult[mat])
     }),1000);
 
 
@@ -596,17 +675,19 @@ window.setInterval (
 //Algo: of Upgrades Buttons
 function upgradePriceARessourceLevel(event) {
     if ( (upgradePrice[event.data.material] * puisMult)<= technologyPoints){
-        console.log("cul")
-        for (var i = 1; i <= multiplier; i++) {
-            technologyPoints -= upgradePrice[event.data.material]; 
-            upgradePrice[event.data.material]   *=  complexe;
-            $("#techPD").html(technologyPoints); 
-            ressourceLevel[event.data.material] ++;
-            updatePrice(event.data.material);
+        technologyPoints -= upgradePrice[event.data.material] * puisMult; 
+        upgradePrice[event.data.material] *=  complexe * puisMult ;
+            if(technologyPoints < 1000000){
+                intermed = Math.round((technologyPoints + 0.00001) * 100) / 100
+                $("#techPD").html(intermed);
+                }
+            else{
+	           $("#techPD").html(technologyPoints.toExponential(2));
+            } 
+        ressourceLevel[event.data.material] += multiplier;
+        updatePrice(event.data.material);
         }
     }
-    else{console.log("bite")}
-}
 
 //Display :Button event calling the algorithm
 listeDesMateriaux.forEach(
