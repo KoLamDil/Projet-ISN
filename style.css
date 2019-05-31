@@ -195,7 +195,7 @@ body{
 	height: 90%;
     align-items: center;
     text-align: center;
-    display: inline-block;
+    display: flex;
 }
 
 
@@ -327,8 +327,7 @@ body{
     cursor: pointer;
     position: relative;
     padding: initial;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto;
 }
 
 #planets:hover {
@@ -347,4 +346,47 @@ body{
     border-image-width: 75%;
 }
 
+.explorationButtonDiv{
+    width: 0%;
+    height: 0%;
+}
 
+#explorationButton{
+    -moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	box-shadow:inset 0px 0px 0px 0px #ffffff;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a9a9a9', endColorstr='#dfdfdf',GradientType=0);
+	background-color: darkred;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:2px solid #696969;
+	cursor:pointer;
+	color:#696969;
+	font-size:15px;
+	padding:26px 46px;
+	text-decoration:none;
+	text-shadow:0px 1px 50px #ffffff;
+    font-weight: 300;
+    font-weight: bold;
+    position: inherit;
+	display:inline-block;
+    color: black;
+    width: 50%;
+    height: 100%;
+    margin: 0px;
+}
+#explorationButton:hover{
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #a9a9a9));
+	background:-moz-linear-gradient(top, #dfdfdf 5%, #a9a9a9 100%);
+	background:-webkit-linear-gradient(top, #dfdfdf 5%, #a9a9a9 100%);
+	background:-o-linear-gradient(top, #dfdfdf 5%, #a9a9a9 100%);
+	background:-ms-linear-gradient(top, #dfdfdf 5%, #a9a9a9 100%);
+	background:linear-gradient(to bottom, #dfdfdf 5%, #a9a9a9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#a9a9a9',GradientType=0);
+	background-color:#dfdfdf;
+}
+#explorationButton:active{
+	position:relative;
+	top:1px;
+}
