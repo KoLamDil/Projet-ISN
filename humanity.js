@@ -11,57 +11,26 @@
 var listeDesMateriaux = ["coal", "iron", "copper", "aluminum", "tin", "silver", "gold", "tungsten", "platinum", "titanium"];
 
 var ressource = {
-    coal: 0,
-    iron: 0,
-    copper: 0,
-    aluminum: 0,
-    tin: 0,
-    silver: 0,
-    gold: 0,
-    tungsten: 0,
-    platinum: 0,
-    titanium: 0
+        coal: 0,    iron: 0,    copper: 0,      aluminum: 0,    tin: 0,
+        silver: 0,  gold: 0,    tungsten: 0,    platinum: 0,    titanium: 0
 };
-
 
 // Prix (points de technologie) nécéssaire pour débloquer une ressource
 
 var upgradePrice = {
-	coal: 10,
-	iron: 100,
-    copper: 10000,
-	aluminum: 100000,
-	tin: 1000000,
-	silver: 10000000,
-    gold: 100000000,
-	tungsten: 1000000000,
-	platinum: 10000000000,
-    titanium: 100000000000
-};
-var ressourceLevel = {
-    coal: 0,
-    iron: 0,
-    copper: 0,
-    aluminum: 0,
-    tin: 0,
-    silver: 0,
-    gold: 0,
-    tungsten: 0,
-    platinum: 0,
-    titanium: 0
+        coal: 10,               iron: 100,              copper: 10000,      aluminum: 100000,
+        tin: 1000000,           silver: 10000000,       gold: 100000000,    tungsten: 1000000000,
+        platinum: 10000000000, titanium: 100000000000
 };
 
-var upgradePriceWMult = {
-    coal: 0,
-	iron: 0,
-    copper: 0,
-	aluminum: 0,
-	tin: 0,
-	silver: 0,
-    gold: 0,
-	tungsten: 0,
-	platinum: 0,
-    titanium: 0
+var ressourceLevel = {
+        coal: 0,    iron: 0,    copper: 0,      aluminum: 0,    tin: 0,
+        silver: 0,  gold: 0,    tungsten: 0,    platinum: 0,    titanium: 0
+};
+
+var upgradePriceWMult  = {
+        coal: 0,    iron: 0,    copper: 0,      aluminum: 0,    tin: 0,
+        silver: 0,  gold: 0,    tungsten: 0,    platinum: 0,    titanium: 0
 };
 
 //Actualisation tt les secondes du upgrade price w/ multiplier
@@ -80,38 +49,7 @@ var gameTime = 0;
 var complexe = 1.17;
 
 var puisMult = Math.pow(complexe, multiplier);
- var intermed = 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var intermed = 0;
 
 
 
@@ -127,43 +65,6 @@ listeDesMateriaux.forEach(
             }
         );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //########################################################
 // HEADER D ZONE
 //########################################################
@@ -177,70 +78,15 @@ else{
 $("#exploPD").html(explorationPoints);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //########################################################
 // HEARDER G ZONE
 //########################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //########################################################
 // BODY D ZONE
 //########################################################
 
-$("#techButton").click(function(){
+$("#planets").click(function(){
 	technologyPoints += increment;
     totTechPoints += increment;
         if(technologyPoints < 1000000){
@@ -251,39 +97,20 @@ $("#techButton").click(function(){
 	           $("#techPD").html(technologyPoints.toExponential(2));
             }
 });
-
-
-
+function changeMultiplier(event) {
+    multiplier = event.data.mult;
+    $("#buttonMultiplier1").css({backgroundColor: 'rgb(169, 169, 169)',});
+    $("#buttonMultiplier10").css({backgroundColor: 'rgb(169, 169, 169)', });
+    $("#buttonMultiplier100").css({backgroundColor: 'rgb(169, 169, 169)',});
+    $("#buttonMultiplier"+event.data.mult).css({backgroundColor: 'red',});
+    puisMult = Math.pow(complexe,event.data.mult)
+    listeDesMateriaux.forEach(updatePrice);
+;
+}
 
 $("#buttonMultiplier1").click({mult:1},changeMultiplier);
 $("#buttonMultiplier10").click({mult:10},changeMultiplier);
 $("#buttonMultiplier100").click({mult:100},changeMultiplier);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //########################################################
@@ -293,22 +120,6 @@ $("#buttonMultiplier100").click({mult:100},changeMultiplier);
 //--------------------------------------------------------
 // Thechnologies Upgrade
 //--------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 var techUpString = [];
 $("#techUpButton").click(function(){
@@ -322,6 +133,8 @@ var test4 = 0;
 var test5 = 0;
 
 function techUpButtonCreator (name,upgradenumber,incrementvalue,coalPrice,ironPrice,copperPrice,aluminumPrice,tinPrice,silverPrice,goldPrice,tungstenPrice,platinumPrice,titaniumPrice){
+    var priceCoalOut = coalPrice
+    var ironPrice = 
     techUpString.push(
         '<div id="upgradeDiv'+upgradenumber+'"><button onclick=\'techUpgrades ("'+name+'",'+upgradenumber+','+incrementvalue+','+coalPrice+','+ironPrice+','+copperPrice+','+aluminumPrice+','+tinPrice+','+silverPrice+','+goldPrice+','+tungstenPrice+','+platinumPrice+','+titaniumPrice +')\' class="upgradeButton" id="upgradeNumber'+upgradenumber+'">'+ name +
         '<br>'+
@@ -394,41 +207,10 @@ techUpButtonCreator ("Feu 4",4,1,10,10,10,10,10,0,0,0,0,0)
 techUpButtonCreator ("Feu 5",5,1,10,10,10,10,10,10,0,0,0,0)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //--------------------------------------------------------
 //  Upgrade Materials
 //--------------------------------------------------------
-var matUpString = '<div id="matUp"><button class="functionButton" id="coalUpgrade"> Coal Upgrade<br> <span class="infoClass" id="coalInfo"></span> </button> <span> <br> </span><button class="functionButton" id="ironUpgrade"> Iron Upgrade<br> <span class="infoClass" id="ironInfo"></span> </button> <br><button class="functionButton" id="copperUpgrade"> Copper Upgrade<br> <span class="infoClass" id="copperInfo"></span> </button> <br><button class="functionButton" id="aluminumUpgrade"> Aluminum Upgrade<br> <span class="infoClass" id="aluminumInfo"></span> </button> <br><button class="functionButton" id="tinUpgrade"> Tin Upgrade<br> <span class="infoClass" id="tinInfo"></span> </button> <br><button class="functionButton" id="silverUpgrade"> Silver Upgrade<br> <span class="infoClass" id="silverInfo"></span> </button> <br><button class="functionButton" id="goldUpgrade"> Gold Upgrade<br> <span class="infoClass" id="goldInfo"></span> </button> <br><button class="functionButton" id="tungstenUpgrade"> Tungsten Upgrade<br> <span class="infoClass" id="tungstenInfo"></span> </button> <br><button class="functionButton" id="platinumUpgrade"> Platinum Upgrade<br> <span class="infoClass" id="platinumInfo"></span> </button> <br><button class="functionButton" id="titaniumUpgrade"> Titanium Upgrade<br> <span class="infoClass" id="titaniumInfo"></span> </button> <br></div>';
+var matUpString = '<div id="matUp"> <table> <tr> <td> <button class="functionButton" id="coalUpgrade"> Coal Upgrade <br> <span class="infoClass" id="coalInfo"></span> <img src="sprite/Techpoint.png"> </button> </td> <td> <button class="functionButton" id="ironUpgrade"> Iron Upgrade <br> <span class="infoClass" id="ironInfo"></span> <img src="sprite/Techpoint.png"> </button> </td> </tr> <tr> <td> <button class="functionButton" id="copperUpgrade"> Copper Upgrade <br> <span class="infoClass" id="copperInfo"></span> <img src="sprite/Techpoint.png"> </button> </td> <td> <button class="functionButton" id="aluminumUpgrade"> Aluminum Upgrade <br> <span class="infoClass" id="aluminumInfo"></span> <img src="sprite/Techpoint.png"> </button> </td> </tr> <tr> <td> <button class="functionButton" id="tinUpgrade"> Tin Upgrade <br> <span class="infoClass" id="tinInfo"></span> <img src="sprite/Techpoint.png"> </button> </td> <td> <button class="functionButton" id="silverUpgrade"> Silver Upgrade <br> <span class="infoClass" id="silverInfo"></span> <img src="sprite/Techpoint.png"> </button> </td> </tr> <tr> <td> <button class="functionButton" id="goldUpgrade"> Gold Upgrade <br> <span class="infoClass" id="goldInfo"></span> <img src="sprite/Techpoint.png"> </button> </td> <td> <button class="functionButton" id="tungstenUpgrade"> Tungsten Upgrade <br> <span class="infoClass" id="tungstenInfo"></span> <img src="sprite/Techpoint.png"> </button> </td> </tr> <tr> <td> <button class="functionButton" id="platinumUpgrade"> Platinum Upgrade <br> <span class="infoClass" id="platinumInfo"></span> <img src="sprite/Techpoint.png"> </button> </td> <td> <button class="functionButton" id="titaniumUpgrade"> Titanium Upgrade <br> <span class="infoClass" id="titaniumInfo"></span> <img src="sprite/Techpoint.png"> </button> <td> </tr> </table></div>';
 
 $("#matUpButton").click(function(){
    $("#displayBoxGBody").html(matUpString) 
@@ -439,54 +221,14 @@ window.setInterval(
     function (){
         listeDesMateriaux.forEach(
             function(mat) {
-                $("#"+mat+"Info").html("LVL: "+ressourceLevel[mat]+"<br>"+" *"+multiplier+"<br>"+"Price: "+ upgradePriceWMult[mat].toExponential(2));
+                if (upgradePriceWMult[mat] < 1000000){
+                $("#"+mat+"Info").html("LvL: "+ressourceLevel[mat]+"<br>"+" Multiplier : * "+multiplier+"<br>"+"Price: "+ Math.round((upgradePriceWMult[mat] + 0.00001) * 100) / 100);}
+                else{
+                $("#"+mat+"Info").html("LvL: "+ressourceLevel[mat]+"<br>"+" Multiplier : * "+multiplier+"<br>"+"Price: "+ upgradePriceWMult[mat].toExponential(2));
+                };
             }
         )
     },1000);
-
-
-
-
-                                                            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //--------------------------------------------------------
@@ -498,57 +240,12 @@ $("#univUpButton").click(function(){
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //--------------------------------------------------------
 //  Statistics
 //--------------------------------------------------------
 var statString ='<div id="statDiv">'+
                     '<p>Total of technology points earned (on this universe): <span id="totTechnologyPointsID"></span></p>'+
-                    '<p>Total of exploration points earned (on this universe): <span id="numExplorationID"></span></p>'+
+                    '<p>Total of exploration points earned : <span id="numExplorationID"></span></p>'+
                     '<p>Technology points per second: <span id="technologyPointsPerSecondID"></span></p>'+
                     '<p>Game time: <span id="timePlayed"></span></p>'+
                     '<p>Coal per second: <span id="coalPerSecond"></span></p>'+
@@ -561,22 +258,11 @@ var statString ='<div id="statDiv">'+
                     '<p>Tungsten per second: <span id="tungstenPerSecond"></span></p>'+
                     '<p>Platinum per second: <span id="platinumPerSecond"></span></p>'+
                     '<p>Titanium per second: <span id="titaniumPerSecond"></span></p>'+
-                    '<p>Coal Level: <span id="coalLevel"></span></p>'+
-                    '<p>Iron Level: <span id="ironLevel"></span></p>'+
-                    '<p>Copper Level: <span id="copperLevel"></span></p>'+
-                    '<p>Aluminum Level: <span id="aluminumLevel"></span></p>'+
-                    '<p>Tin Level: <span id="tinLevel"></span></p>'+
-                    '<p>Silver Level: <span id="silverLevel"></span></p>'+
-                    '<p>Gold Level: <span id="goldLevel"></span></p>'+
-                    '<p>Tungsten Level: <span id="tungstenLevel"></span></p>'+
-                    '<p>Platinum Level: <span id="platinumLevel"></span></p>'+
-                    '<p>Titanium Level: <span id="titaniumLevel"></span></p>'+
             '</div>';
 
 $("#statButton").click(function(){
    $("#displayBoxGBody").html(statString) 
 });
-
 
 
 // $("#technologyPointsPerSecondID").html(technologyPointsPerSecond);
@@ -600,32 +286,6 @@ window.setInterval(
         $("#timePlayed").html(gameTime);
     },1000);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
 //--------------------------------------------------------
 // Materials upgrade
 //--------------------------------------------------------
@@ -643,32 +303,14 @@ window.setInterval(
     },1000);
 
 
-function changeMultiplier(event) {
-    multiplier = event.data.mult;
-    $("#buttonMultiplier1").css({backgroundColor: 'rgb(169, 169, 169)',});
-    $("#buttonMultiplier10").css({backgroundColor: 'rgb(169, 169, 169)', });
-    $("#buttonMultiplier100").css({backgroundColor: 'rgb(169, 169, 169)',});
-    $("#buttonMultiplier"+event.data.mult).css({backgroundColor: 'red',});
-    puisMult = Math.pow(complexe,event.data.mult)
-    listeDesMateriaux.forEach(updatePrice);
-;
-}
-
-
-
 function updatePrice (mat){
     upgradePriceWMult[mat] = upgradePrice[mat] * puisMult;
-    console.log("update du prix du "+mat+" : "+ upgradePriceWMult[mat]+" puis mult : "+puisMult);
 }
 window.setInterval (
     listeDesMateriaux.forEach (function (mat){
         upgradePriceWMult[mat] = upgradePrice[mat] * puisMult;
     }),1000);
 
-
-
-
-    
 
 
 
@@ -693,20 +335,11 @@ function upgradePriceARessourceLevel(event) {
 listeDesMateriaux.forEach(
             function(mat) {
                 $("#displayBoxGBody").on("click","#"+mat+"Upgrade",{material:mat,mult:multiplier},upgradePriceARessourceLevel);
-                $("#"+mat+"Info").html("LVL: "+ressourceLevel[mat]+"<br>"+" *"+multiplier+"<br>"+"Price: "+ upgradePriceWMult[mat].toExponential(2));
+                if (upgradePriceWMult[mat] < 1000000){
+                $("#"+mat+"Info").html("LvL: "+ressourceLevel[mat]+"<br>"+" Multiplier : * "+multiplier+"<br>"+"Price: "+ Math.round((upgradePriceWMult[mat] + 0.00001) * 100) / 100);}
+                else{
+                $("#"+mat+"Info").html("LvL: "+ressourceLevel[mat]+"<br>"+" Multiplier : * "+multiplier+"<br>"+"Price: "+ upgradePriceWMult[mat].toExponential(2));
+                }
                 
             }
         );
-
-
-//Multiplier:
-
-
-
-
-
-
-
-
-
-
