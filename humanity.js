@@ -42,6 +42,22 @@ var upgradePriceWMult  = {
         silver: 0,  gold: 0,    tungsten: 0,    platinum: 0,    titanium: 0
 };
 
+var exploUpgradeLvl = {
+    capricorn : 0,
+    cassiopeia : 0,
+    orion : 0,
+    andromeda : 0,
+    sagittarius : 0
+}
+
+var exploUpgradePrice = {
+    capricorn : 0,
+    cassiopeia : 0,
+    orion : 0,
+    andromeda : 0,
+    sagittarius : 0
+} 
+
 //Actualisation tt les secondes du upgrade price w/ multiplier
 
 var explorationPoints = 0;
@@ -424,19 +440,52 @@ window.setInterval(
 
 
 //--------------------------------------------------------
-//  Univers Upgrade
+//  Exploration Upgrade
 //--------------------------------------------------------
-var univUpString = '<p id="univUpgrade">  3 </p>';
-$("#univUpButton").click(function(){
-   $("#displayBoxGBody").html(univUpString) 
+var explorationUpString = '<p id="explorationUpgrade">  3 </p>';
+$("#explorationUpButton").click(function(){
+   $("#displayBoxGBody").html(explorationUpString) 
 });
+
+//$("#displayBoxGBody").on("click","#Upgrade",{material:mat,mult:multiplier},upgradePriceARessourceLevel);
+
+function capricornButton (){
+    if (exploUpgradePrice.capricorn < explorationPoints){
+        explorationPoints -= exploUpgradePrice.capricorn;
+        upgradePrice = Math.pow(2,exploUpgradePrice.capricorn+1)-4;
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //--------------------------------------------------------
 //  Statistics
 //--------------------------------------------------------
 var statString ='<div id="statDiv">'+
-                    '<p>Total of technology points earned (on this universe): <span id="totTechnologyPointsID"></span></p>'+
+                    '<p>Total of technology points earned: <span id="totTechnologyPointsID"></span></p>'+
                     '<p>Total of exploration points earned : <span id="numExplorationID"></span></p>'+
                     '<p>Technology points per second: <span id="technologyPointsPerSecondID"></span></p>'+
                     '<p>Game time: <span id="timePlayed"></span></p>'+
@@ -496,11 +545,11 @@ window.setInterval(
 
 
 function updatePrice (mat){
-    upgradePriceWMult[mat] = upgradePrice[mat] * puisMult;
+    upgradePriceWMult[mat] = upgradePrice[mat] *( (1-Math.pow(complexe,multiplier))/1-complexe);
 }
 window.setInterval (
     listeDesMateriaux.forEach (function (mat){
-        upgradePriceWMult[mat] = upgradePrice[mat] * puisMult;
+        upgradePriceWMult[mat] = upgradePrice[mat] *( (1-Math.pow(complexe,multiplier))/1-complexe);
     }),1000);
 
 
@@ -508,9 +557,10 @@ window.setInterval (
 
 //Algo: of Upgrades Buttons
 function upgradePriceARessourceLevel(event) {
-    if ( (upgradePrice[event.data.material] * puisMult)<= technologyPoints){
-        technologyPoints -= upgradePrice[event.data.material] * puisMult; 
-        upgradePrice[event.data.material] *=  complexe * puisMult ;
+    if (upgradePriceWMult[event.data.material]<= technologyPoints){
+        technologyPoints -= upgradePriceWMult[event.data.material]; 
+        upgradePrice[event.data.material] =  upgradePrice[event.data.material] *( (1-Math.pow(complexe,multiplier))/1-complexe)*1.13 ;
+        console.log(puisMult)
             if(technologyPoints < 1000000){
                 intermed = Math.round((technologyPoints + 0.00001) * 100) / 100
                 $("#techPD").html(intermed);
