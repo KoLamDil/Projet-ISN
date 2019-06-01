@@ -10,6 +10,8 @@
 
 var listeDesMateriaux = ["coal", "iron", "copper", "aluminum", "tin", "silver", "gold", "tungsten", "platinum", "titanium"];
 
+var complexe = 1.13;
+
 var ressource = {
         coal: 0,    iron: 0,    copper: 0,      aluminum: 0,    tin: 0,
         silver: 0,  gold: 0,    tungsten: 0,    platinum: 0,    titanium: 0
@@ -18,9 +20,16 @@ var ressource = {
 // Prix (points de technologie) nécéssaire pour débloquer une ressource
 
 var upgradePrice = {
-        coal: 10,               iron: 100,              copper: 10000,      aluminum: 100000,
-        tin: 1000000,           silver: 10000000,       gold: 100000000,    tungsten: 1000000000,
-        platinum: 10000000000, titanium: 100000000000
+        coal: 10,
+        iron: 100,
+        copper: 1000,
+        aluminum: 10000,
+        tin: 100000,
+        silver: 1000000,
+        gold: 10000000,
+        tungsten: 100000000,
+        platinum: 1000000000,
+        titanium: 10000000000
 };
 
 var ressourceLevel = {
@@ -46,7 +55,6 @@ var totTechPoints = 0;
 //Multplier (faster upgrade)
 var multiplier = 1;
 var gameTime = 0;
-var complexe = 1.17;
 
 var puisMult = Math.pow(complexe, multiplier);
 var intermed = 0;
@@ -104,6 +112,13 @@ function exploration () {
     increment = 1;
     totTechPoints = 0;
     
+    if(explorationPoints < 1000000){
+        $("#exploPD").html(Math.round((explorationPoints + 0.00001) * 100) / 100);
+         }
+    else{
+	    $("##exploPD").html(explorationPoints.toExponential(2));
+       }
+    
 }
 
 
@@ -150,9 +165,8 @@ $("#planets").click(function(){
     else{
 	    $("#techPD").html(technologyPoints.toExponential(2));
        }
-    if (totTechPoints == 100000){
-        $("#explorationButtonDiv").html('<button id="explorationButton">Explore !!!</button>')
-        console.log("Oui")
+    if (totTechPoints > 100000){
+        $("#explorationButtonDiv").html('<button id="explorationButton" onclick="exploration ()">Explore !!!</button>');
 }
 });
 function changeMultiplier(event) {
@@ -352,11 +366,37 @@ function techUpgrades (name,upgradenumber,incrementvalue,coalPrice,ironPrice,cop
 
 
 // Upgrade creator
-techUpButtonCreator ("Fire",1,1,10,0,0,0,0,0,0,0,0,0)
-techUpButtonCreator ("Cooking",2,1,1000,0,0,0,0,0,0,0,0,0)
-techUpButtonCreator ("Iron Age",3,2,1000,100,0,0,0,0,0,0,0,0)
-techUpButtonCreator ("Iron Tools",4,5,500,1000,0,0,0,0,0,0,0,0)
-techUpButtonCreator ("Iron Machines",5,10,0,5000,0,0,0,0,0,0,0,0)
+techUpButtonCreator ("Fire",1,1,10,0,0,0,0,0,0,0,0,0)  //1
+techUpButtonCreator ("Primitive Hand Tools/Weapons",2,2,1000,10,0,0,0,0,0,0,0,0) //2
+techUpButtonCreator ("Wheel",3,5,3000,1000,0,0,0,0,0,0,0,0)  //3
+techUpButtonCreator ("Lever",4,8,5000,3000,0,0,0,0,0,0,0,0)  //4
+techUpButtonCreator ("Inclined Plane",5,10,10000,5000,100,0,0,0,0,0,0,0)  //5
+techUpButtonCreator ("Screew",6,15,0,20000,2000,0,0,0,0,0,0,0)  //6
+techUpButtonCreator ("Medieval Woodworking Machinery",7,20,10000,30000,2000,0,0,0,0,0,0,0)  //7
+techUpButtonCreator ("Medieval Blacksmith Machinery",8,25,10000,50000,3000,0,0,0,0,0,0,0)  //8
+techUpButtonCreator ("Medieval Metalworkers/Jewlers Machinery",9,30,10000,50000,3000,0,0,0,0,0,0,0)  //9
+techUpButtonCreator ("Medieval Farming Machinery",10,30,1000000,100000,1000,0,0,0,0,0,0,0)  //10
+techUpButtonCreator ("Woodworking Lathe Machinery",11,50,100000,100000,10000,0,0,0,0,0,0,0) //11
+techUpButtonCreator ("Blacksmithing Lathe Machinery",12,55,300000,200000,20000,0,0,0,0,0,0,0) //12
+techUpButtonCreator ("Metalworkers/Jewlers Lathe Machinery",13,60,500000,200000,20000,0,0,0,0,0,0,0) //13
+techUpButtonCreator ("Glass-working Lathe Machinery",14,70,300000,500000,10000,100,0,0,0,0,0,0) //14
+techUpButtonCreator ("Farming Lathe Machinery",15,70,300000,500000,50000,1000,0,0,0,0,0,0) //15
+techUpButtonCreator ("Water Wheels",16,500,3000000,5000000,500000,10000,100,0,0,0,0,0) //16
+techUpButtonCreator ("Steam Engine",17,500,10000000,5000000,500000,10000,100,0,0,0,0,0) //17
+techUpButtonCreator ("Electric Motor",18,500,10000000,5000000,500000,10000,100,0,0,0,0,0)
+
+
+
+
+
+
+
+
+
+
+
+
+techUpButtonCreator ("Time Traveling",1000,Math.pow(10,6),500000000,50000000,50000000,5000000,500000,50000,5000,500,50,5)
 
 
 //--------------------------------------------------------
